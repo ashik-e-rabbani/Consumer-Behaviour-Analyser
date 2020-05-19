@@ -74,7 +74,7 @@ def analyser(request):
 
 def fetchComments(videoId):
     # Get the dataset
-    url = 'https://www.googleapis.com/youtube/v3/commentThreads?key=AIzaSyBCUth31tkUKXpjmSNdXSEmPdz0J5HwRRc&textFormat=plainText&part=snippet&videoId='+videoId
+    url = 'https://www.googleapis.com/youtube/v3/commentThreads?key={{YOUR_API_KEY}}&textFormat=plainText&part=snippet&videoId='+videoId
     response = urlopen(url)
 
     # Convert bytes to string type and string type to dict
