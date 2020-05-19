@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %} 
+
+
+{% block nav %}
+ <li class="nav-item active">
+ <a class="nav-link" href="/analyser/"><i class="fas fa-tachometer-alt"></i>Analyzer</a>
+ </li>
+ <li class="nav-item">
+ <a class="nav-link" href="/social/"><i class="far fa-address-book"></i>Social</a>
+ </li>
+ {% endblock %}
+
+{% block content %}
+<div style="margin-top: 10px;" class="container  text-center">
+    <img src="{% static 'images/logo.gif' %}">
+    <form action="/analyser/" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+        <!-- <label for="exampleInputEmail1">Enter your text</label> -->
+        <textarea type="text" class="form-control" name="indata" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="আমার সোনার বাংলা... " required></textarea>
+        <small id="emailHelp" class="form-text text-muted">Don't use Daari or Full Stop at End</small>
+        </div>
+        
+        
+        <button id="submitBtn" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <div id="resultSummary" class="mt-5">
+
+        <div style="width: 40%; margin:auto;" class=" bg-info text-white rounded">Overall <p class="display-4" style="display: inline;">{{rating}}%</p> Positivity</div>
+        <br>
+        <br>
+        <div style="width: 90%; margin:auto;" class="">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <!-- <th scope="col">#</th> -->
+                    <th scope="col">Text</th>
+                    <th scope="col">Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+            {% for elements in sdata %}
+          
+            <tr>
+               
+                <td>{{elements.text}},</td>
+                {% if '-' in elements.score %}
+                <td class="text-danger font-weight-bolder" >{{elements.score}}%</td>
+                {% else %}
+                <td class="text-success font-weight-bolder">{{elements.score}}%</td>
+                {% endif %}
+                
+              </tr>
+
+            {% endfor %}
+                </tbody>
+              </table>
+
+        </div>
+
+
+       
+    </div>
+    
+</div>
+{% endblock %}

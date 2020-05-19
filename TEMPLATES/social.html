@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+<div class="hori-selector" style="top: 0px; left: 0px; height: 0px; width: 0px;"><div class="left"></div><div class="right"></div></div>
+{% block nav %}
+ <li class="nav-item ">
+ <a class="nav-link" href="/analyser/"><i class="fas fa-tachometer-alt"></i>Analyzer</a>
+ </li>
+ <li class="nav-item active">
+ <a class="nav-link" href="/social/"><i class="far fa-address-book"></i>Social</a>
+ </li>
+ {% endblock %}
+{% block content %}
+<div style="margin-top: 150px;" class="container  text-center">
+  
+  <form method="POST" action="/social/">
+    {% csrf_token %}
+    <div class="form-group">
+      <input type="text" class="form-control" name="videoId" placeholder="https://www.youtube.com/watch?v=">
+    </div>
+    
+    <button id="submitBtn" type="submit" class="btn btn-primary">Submit</button>
+
+  </form>
+
+  <div id="resultSummary" class="mt-5">
+
+   
+    <br>
+
+    
+
+    <div style="width: 40%; margin:auto;" class=" bg-info text-white rounded">Overall <p class="display-4" style="display: inline;">{{rating}}%</p> Positivity</div>
+      <br><br>
+      <h4>Your Video Will Appear Here</h4><hr>
+      <iframe width="99%" height="400" src="https://www.youtube.com/embed/{{ videolink }}" >
+      </iframe>
+</div>
+
+</div>
+{% endblock %}

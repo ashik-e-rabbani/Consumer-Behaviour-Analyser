@@ -1,0 +1,76 @@
+{% load static %} 
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <!-- <link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png"> -->
+    <meta name="apple-mobile-web-app-title" content="CONBA">
+    <title>CONBA</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+   
+    </style>
+    <script>
+      window.console = window.console || function(t) {};
+    </script>
+    <script>
+      if (document.location.search.match(/type=embed/gi)) {
+        window.parent.postMessage("resize", "*");
+      }
+    </script>
+    </head>
+    <body translate="no">
+    <nav class="navbar navbar-expand-lg navbar-mainbg">
+    <a class="navbar-brand navbar-logo" href="#">{% block app_name %}CONBA - Consumer Behaviour Analyser{% endblock %}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-bars text-white"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+    <div class="hori-selector" style="top: 0px; left: 0px; height: 0px; width: 0px;"><div class="left"></div><div class="right"></div></div>
+   {% block nav %}
+    <li class="nav-item active">
+    <a class="nav-link" href="/analyser/"><i class="fas fa-tachometer-alt"></i>Analyzer</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="/social/"><i class="far fa-address-book"></i>Social</a>
+    </li>
+    {% endblock %}
+    <li class="nav-item">
+    <a class="nav-link" href="javascript:void(0);"><i class="far fa-clone"></i>About</a>
+    </li>
+    <!-- <li class="nav-item">
+    <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Calendar</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>Documents</a> -->
+    </li>
+    </ul>
+    </div>
+    </nav>
+
+    {% block content %}
+
+   
+    
+    {% endblock %}
+
+
+
+
+
+
+
+
+    <script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="{% static 'style.js' %}"></script>
+    
+    
+    </body></html>
