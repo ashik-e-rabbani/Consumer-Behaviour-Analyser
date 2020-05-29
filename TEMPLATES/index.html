@@ -12,8 +12,11 @@
  {% endblock %}
 
 {% block content %}
-<div style="margin-top: 10px;" class="container  text-center">
-    <img src="{% static 'images/logo.gif' %}">
+<div style="margin-top: 20px;" class="  text-center">
+    
+  <div class="container" style="height: 550px;">
+    <img style="height: 120px;"src="{% static 'images/logo.gif' %}"><br>
+    <small class="text-muted mb-3">Custom Data Analysis</small><br>
     <form action="/analyser/" method="POST">
         {% csrf_token %}
         <div class="form-group">
@@ -22,48 +25,54 @@
         <small id="emailHelp" class="form-text text-muted">Don't use Daari or Full Stop at End</small>
         </div>
         
-        
-        <button id="submitBtn" type="submit" class="btn btn-primary">Submit</button>
+               <button id="submitBtn" type="submit" class="btn btn-primary">Submit</button>
     </form>
 
-    <div id="resultSummary" class="mt-5">
+    <div style="width: 40%; margin:auto; margin-top:100px;" class="">Overall <p class="display-4 text-success font-weight-bolder" style="display: inline;">{{rating}}%</p> Positivity Found</div>
+    <br>
+  </div>
 
-        <div style="width: 40%; margin:auto;" class=" bg-info text-white rounded">Overall <p class="display-4" style="display: inline;">{{rating}}%</p> Positivity</div>
-        <br>
-        <br>
-        <div style="width: 90%; margin:auto;" class="">
-            <table class="table">
-                <thead>
-                  <tr>
-                    <!-- <th scope="col">#</th> -->
-                    <th scope="col">Text</th>
-                    <th scope="col">Score</th>
-                  </tr>
-                </thead>
-                <tbody>
+<section style=" min-height:500px; background:whitesmoke; " >
+  <div id="resultSummary" class="mt-3 container" >
 
-            {% for elements in sdata %}
-          
-            <tr>
-               
-                <td>{{elements.text}},</td>
-                {% if '-' in elements.score %}
-                <td class="text-danger font-weight-bolder" >{{elements.score}}%</td>
-                {% else %}
-                <td class="text-success font-weight-bolder">{{elements.score}}%</td>
-                {% endif %}
-                
+    <h4 class="text-info" style="padding-top: 20px; ">Analysis Summary</h4>
+  
+    
+    <br>
+    <div style="width: 90%; margin:auto;" class="">
+        <table class="table">
+            <thead>
+              <tr>
+                <!-- <th scope="col">#</th> -->
+                <th scope="col">Text</th>
+                <th scope="col">Score</th>
               </tr>
+            </thead>
+            <tbody>
 
-            {% endfor %}
-                </tbody>
-              </table>
+        {% for elements in sdata %}
+      
+        <tr>
+           
+            <td>{{elements.text}},</td>
+            {% if '-' in elements.score %}
+            <td class="text-danger font-weight-bolder" >{{elements.score}}%</td>
+            {% else %}
+            <td class="text-success font-weight-bolder">{{elements.score}}%</td>
+            {% endif %}
+            
+          </tr>
 
-        </div>
+        {% endfor %}
+            </tbody>
+          </table>
 
-
-       
     </div>
+
+
+   
+</div>
+</section>
     
 </div>
 {% endblock %}

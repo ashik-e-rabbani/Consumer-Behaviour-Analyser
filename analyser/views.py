@@ -71,6 +71,56 @@ def analyser(request):
     return render(request,"index.html",{'sdata': sdata, 'pdata': pdata, 'rating': rating})
 
 
+def analysisYoutube(data):
+
+    text = data
+
+    sentence = text.replace('।','.')
+    
+    sentence = sentence.split('.')
+    
+
+    en_sent = translator.translate(text).text
+    en_split = en_sent.split('.')
+    
+    polarity_data = []
+    sentence_data = []
+    rating = 0
+    leng_div= 1
+
+    for i, val in enumerate(en_split):
+        tb = TextBlob(val)
+        # print("Polarity of Sentence [" + str(i+1) + "] = ", end="")
+        sentiment = tb.sentiment.polarity
+        # print(sentence[i] ,sentiment, end="")
+        
+        polarity_data.append(round(sentiment*100))
+        
+        if round(sentiment*100)==0:
+            leng_div+=0
+        else:
+            leng_div+=1
+
+        rating+=sentiment
+        
+        try:
+        #    sentence_data.append(sentence[i]+' '+str(round(sentiment*100)))
+           data_obj = {'text':sentence[i],'score':str(round(sentiment*100))}
+        except IndexError:
+            data_obj = {'text':'','score':''}
+        
+        sentence_data.append(dict(data_obj))
+       
+    # sentence_data.pop()
+    if len(en_split)==1:
+        # rating = len(en_split)
+        rating = round((rating/(leng_div))*100)
+    else:
+        rating = round((rating/(leng_div-1))*100)
+    
+    
+    return sentence_data,polarity_data,rating
+
 
 def fetchComments(videoId):
     # Get the dataset
@@ -111,7 +161,7 @@ def social(request):
 
         comments = remove_emoji(comments)
 
-        sdata,pdata,rating = analysis(comments)
+        sdata,pdata,rating = analysisYoutube(comments)
 
     # fetch API
     
