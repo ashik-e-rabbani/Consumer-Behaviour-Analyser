@@ -28,10 +28,13 @@
                <button id="submitBtn" type="submit" class="btn btn-primary">Submit</button>
     </form>
 
+    {% if rating %}
     <div style="width: 40%; margin:auto; margin-top:100px;" class="">Overall <p class="display-4 text-success font-weight-bolder" style="display: inline;">{{rating}}%</p> Positivity Found</div>
     <br>
+    {% endif %}
   </div>
 
+  {%if sdata %}
 <section style=" min-height:500px; background:whitesmoke; " >
   <div id="resultSummary" class="mt-3 container" >
 
@@ -73,6 +76,7 @@
    
 </div>
 </section>
+{% endif %}
     
 </div>
 {% endblock %}
